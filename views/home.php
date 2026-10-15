@@ -1,24 +1,64 @@
 <!-- PAGE 1: HOME -->
 <div id="page-home" class="page active">
-  <div class="header-hero" style="position: relative; overflow: hidden; background: transparent; padding: 40px 24px 30px;">
-    <!-- Background Carousel -->
+  <div class="header-hero" style="position: relative; overflow: hidden; height: 300px; padding: 56px 24px 24px; border-radius: 0 0 var(--radius-lg) var(--radius-lg); box-shadow: var(--shadow-md);">
+    <!-- Background Mountain Carousel representing Indonesian Mountains -->
     <div class="carousel-container">
-      <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1627662236973-4f8259fa2441?auto=format&fit=crop&w=600&q=80');"></div>
-      <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=600&q=80');"></div>
-      <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80');"></div>
-      <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1598091104193-272e272bc977?auto=format&fit=crop&w=600&q=80');"></div>
-      <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1626245100062-8178d227918a?auto=format&fit=crop&w=600&q=80');"></div>
-      <div class="carousel-overlay"></div>
+      <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1626244464197-cc74df52b04f?auto=format&fit=crop&w=800&q=80');"></div>
+      <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1619472624982-f5e927ef1ee7?auto=format&fit=crop&w=800&q=80');"></div>
+      <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1596396826620-3351d3826071?auto=format&fit=crop&w=800&q=80');"></div>
+      <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1616038242814-a6eac7845d88?auto=format&fit=crop&w=800&q=80');"></div>
+      <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1620121692029-d088224ddc74?auto=format&fit=crop&w=800&q=80');"></div>
+      <div class="carousel-overlay" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.45) 50%, var(--bg-light) 100%);"></div>
     </div>
     
-    <div class="header-hero-content">
-      <div style="font-size: 14px; opacity: 0.9;">Selamat Datang di TERRA,</div>
-      <h2 style="font-weight: 700; margin-top: 4px;"><?= htmlspecialchars($_SESSION['user_name']) ?> 👋</h2>
-      
-      <div style="margin-top: 18px; background: rgba(255,255,255,0.15); padding: 12px 16px; border-radius: var(--radius-md); font-size: 13px; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);">
-        <div style="font-weight: 600; margin-bottom: 2px;">🏔️ Siap Bertualang Hari Ini?</div>
-        Cek selalu info kuota pendakian & peringatan dini cuaca secara berkala sebelum berangkat mendaki.
+    <div class="header-hero-content" style="display: flex; flex-direction: column; justify-content: flex-start; text-align: left; padding-top: 32px;">
+      <h2 style="font-weight: 800; font-size: 28px; margin: 0; line-height: 1.2; color: #FFFFFF; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">Halo, <?= htmlspecialchars($_SESSION['user_name']) ?>! 🌟</h2>
+      <p style="font-size: 13px; opacity: 0.85; margin-top: 6px; font-weight: 500; color: #E2E8F0; text-shadow: 0 1px 4px rgba(0,0,0,0.4);">Siap untuk petualangan berikutnya?</p>
+    </div>
+  </div>
+
+  <!-- Quick Menu Section -->
+  <div class="quick-menu-floating-row">
+    <div class="quick-menu-item pressed-state" onclick="switchTab('tracking')">
+      <div class="quick-menu-icon-wrap">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
+          <line x1="9" y1="3" x2="9" y2="18"/>
+          <line x1="15" y1="6" x2="15" y2="21"/>
+        </svg>
       </div>
+      <span class="quick-menu-title">Tracking</span>
+    </div>
+
+    <div class="quick-menu-item pressed-state" onclick="switchTab('ticket'); switchTicketTab('past');">
+      <div class="quick-menu-icon-wrap accent-wrap">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </div>
+      <span class="quick-menu-title">Riwayat</span>
+    </div>
+
+    <div class="quick-menu-item pressed-state" onclick="scrollToElement('outdoor-safety-section')">
+      <div class="quick-menu-icon-wrap">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="16" x2="12" y2="12"/>
+          <line x1="12" y1="8" x2="12.01" y2="8"/>
+        </svg>
+      </div>
+      <span class="quick-menu-title">Informasi</span>
+    </div>
+
+    <div class="quick-menu-item pressed-state" onclick="switchTab('profile')">
+      <div class="quick-menu-icon-wrap accent-wrap">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
+      <span class="quick-menu-title">Profil</span>
     </div>
   </div>
 
@@ -35,50 +75,65 @@
       }
     ?>
     <?php if ($latest_mt): ?>
-      <div class="section-title">Tiket Aktif Mendatang</div>
-      <div class="card" onclick="switchTab('ticket')" style="cursor: pointer; border-left: 4px solid var(--accent);">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+      <div class="section-title" style="margin-bottom: 8px;">Tiket Aktif Mendatang</div>
+      <div class="active-ticket-card" onclick="switchTab('ticket')">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
           <div>
-            <h4 style="color: var(--primary); margin: 0; font-size: 15px;"><?= htmlspecialchars($latest_mt['name']) ?></h4>
-            <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;"><?= htmlspecialchars($latest_ticket['basecamp']) ?></p>
-            <span class="quota-pill" style="margin-top: 6px;">Jadwal: <?= htmlspecialchars($latest_ticket['climb_date']) ?></span>
+            <h4 style="color: var(--primary); margin: 0; font-size: 16px; font-weight: 800;"><?= htmlspecialchars($latest_mt['name']) ?></h4>
+            <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px; font-weight: 500;"><?= htmlspecialchars($latest_ticket['basecamp']) ?></p>
+            <span class="quota-pill" style="margin-top: 8px; font-size: 10px;">📅 <?= htmlspecialchars($latest_ticket['climb_date_start'] ?? $latest_ticket['climb_date'] ?? '') ?></span>
           </div>
           <div style="text-align: right;">
-            <span class="badge-density density-sepi" style="font-size: 10px;">TERDAFTAR</span>
-            <p style="font-size: 11px; color: var(--text-muted); margin-top: 8px;"><?= count($latest_ticket['members']) ?> Pendaki</p>
+            <span class="diff-badge diff-mudah" style="font-size: 9px; letter-spacing: 0.5px;">TERDAFTAR</span>
+            <p style="font-size: 11px; color: var(--text-muted); margin-top: 10px; font-weight: 600;"><?= count($latest_ticket['members']) ?> Pendaki</p>
           </div>
         </div>
       </div>
     <?php endif; ?>
   <?php endif; ?>
 
-  <!-- Real-Time Quota Summary -->
-  <div class="section-title">Kuota Real-Time Gunung</div>
-  <?php foreach (array_slice($data['mountains'], 0, 2) as $mt): ?>
-    <?php 
-      $densityClass = 'density-sedang';
-      if ($mt['density'] === 'Sepi') $densityClass = 'density-sepi';
-      if ($mt['density'] === 'Ramai') $densityClass = 'density-ramai';
-      if ($mt['density'] === 'Sangat Ramai') $densityClass = 'density-sangat-ramai';
-    ?>
-    <div class="card" onclick="viewMountainDetails('<?= $mt['id'] ?>')" style="cursor: pointer;">
-      <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div>
-          <h4 style="margin: 0; color: var(--text-dark);"><?= htmlspecialchars($mt['name']) ?></h4>
-          <span class="quota-pill">Sisa Kuota: <strong><?= $mt['quota']['remaining'] ?></strong></span>
-        </div>
-        <span class="badge-density <?= $densityClass ?>"><?= htmlspecialchars($mt['density']) ?></span>
-      </div>
+  <!-- Recommendations Section -->
+  <div class="section-title" style="margin-bottom: 8px;">Rekomendasi Gunung</div>
+  <div id="home-recommendations-container" style="display: flex; gap: 16px; overflow-x: auto; padding: 4px 24px 20px; scrollbar-width: none; -ms-overflow-style: none;">
+    <!-- Populated by JS -->
+  </div>
+
+  <!-- Nearest Mountains Section -->
+  <div class="section-title" style="margin-bottom: 8px;">Gunung Terdekat</div>
+  <div id="nearest-mountains-section">
+    <div id="location-permission-card" class="card" style="text-align: center; padding: 24px; margin-top: 0;">
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">Aktifkan GPS untuk menemukan gunung terdekat dari posisi Anda saat ini.</p>
+      <button onclick="requestUserLocation()" class="btn-primary" style="margin: 0 auto; background: var(--primary); color: white; padding: 10px 20px; font-size: 13px; width: auto; display: inline-flex; align-items: center; gap: 6px; border-radius: var(--radius-sm);">
+        <span>🛰️</span> Aktifkan Lokasi
+      </button>
     </div>
-  <?php endforeach; ?>
+    <div id="nearest-mountains-list" style="display: none; padding-bottom: 8px;">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+
+  <!-- Climbing History Section -->
+  <div class="section-title" style="margin-bottom: 8px;">Riwayat Pendakian Saya</div>
+  <div id="climbing-history-container" style="padding-bottom: 8px;">
+    <!-- Populated by JS -->
+  </div>
 
   <!-- Outdoor Safety Tips -->
-  <div class="section-title">Tips Pendakian Aman</div>
-  <div class="card" style="background: linear-gradient(to right, #FFF9E6, #FFFFFF); display: flex; gap: 12px; align-items: center;">
-    <span style="font-size: 24px;">⛺</span>
+  <div id="outdoor-safety-section" class="section-title">Tips Pendakian Aman</div>
+  <div class="card safety-tip-card">
+    <span style="font-size: 32px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">⛺</span>
     <div>
-      <h5 style="margin: 0; color: #8A6D1C;">Peralatan Lengkap & Matang</h5>
-      <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Pastikan tenda, jaket anti-angin, dan kompor teruji dengan baik sebelum mendaki gunung.</p>
+      <h5 style="margin: 0; font-size: 14px; font-weight: 700;">Peralatan Lengkap & Matang</h5>
+      <p style="font-size: 12px; margin-top: 4px; line-height: 1.5;">Pastikan tenda, jaket anti-angin, dan kompor teruji dengan baik sebelum mendaki gunung.</p>
     </div>
   </div>
 </div>
+
+<script>
+  function scrollToElement(elementId) {
+    const el = document.getElementById(elementId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+</script>

@@ -74,7 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             $mountain_id = $_POST['mountain_id'];
             $basecamp = $_POST['basecamp'];
-            $climb_date = $_POST['climb_date'];
+            $climb_date_start = $_POST['climb_date_start'] ?? '';
+            $climb_date_end = $_POST['climb_date_end'] ?? '';
             
             $climber_names = $_POST['climber_names'] ?? [];
             $climber_ktps = $_POST['climber_ktps'] ?? [];
@@ -89,8 +90,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
             }
 
-            if (empty($mountain_id) || empty($basecamp) || empty($climb_date) || empty($members)) {
+            if (empty($mountain_id) || empty($basecamp) || empty($climb_date_start) || empty($climb_date_end) || empty($members)) {
                 $error_message = "Semua form pendaftaran wajib diisi dengan benar.";
+            } else if (strtotime($climb_date_end) < strtotime($climb_date_start)) {
+                $error_message = "Tanggal selesai tidak boleh lebih awal dari tanggal mulai.";
             } else {
                 // Generate a unique ticket ID
                 $ticket_id = "TERRA-" . strtoupper(substr(md5(uniqid(rand(), true)), 0, 8));
@@ -100,7 +103,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     "user_email" => $_SESSION['user_email'],
                     "mountain_id" => $mountain_id,
                     "basecamp" => $basecamp,
-                    "climb_date" => $climb_date,
+                    "climb_date_start" => $climb_date_start,
+                    "climb_date_end" => $climb_date_end,
                     "members" => $members,
                     "created_at" => date('Y-m-d H:i:s')
                 ];
