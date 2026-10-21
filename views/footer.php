@@ -25,7 +25,21 @@
 
   <!-- Embedded Data for JavaScript use -->
   <script>
-    const mountainsData = <?= json_encode($data['mountains']) ?>;
+    <?php
+    $mountains_data = $data['mountains'];
+    foreach ($mountains_data as &$mt) {
+        if (!empty($mt['image_url']) && strpos($mt['image_url'], 'http') !== 0) {
+            $local_path = __DIR__ . '/../' . ltrim($mt['image_url'], '/');
+            $clean_path = explode('?', $local_path)[0];
+            if (file_exists($clean_path)) {
+                $clean_url = explode('?', $mt['image_url'])[0];
+                $mt['image_url'] = $clean_url . '?v=' . filemtime($clean_path);
+            }
+        }
+    }
+    unset($mt);
+    ?>
+    const mountainsData = <?= json_encode($mountains_data) ?>;
     const userTickets = <?= json_encode($user_tickets) ?>;
     
 

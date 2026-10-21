@@ -494,7 +494,13 @@ $default_routes_json = json_encode([
                 <?php foreach ($data['mountains'] as $mt): ?>
                     <a href="admin.php?action=edit&id=<?= urlencode($mt['id']) ?>" 
                        class="mountain-item <?= (isset($_GET['id']) && $_GET['id'] === $mt['id']) ? 'active' : '' ?>">
-                        <img src="<?= htmlspecialchars(strpos($mt['image_url'], 'http') === 0 ? $mt['image_url'] : '../' . $mt['image_url']) ?>" alt="<?= htmlspecialchars($mt['name']) ?>">
+                        <?php 
+                            $img_src = strpos($mt['image_url'], 'http') === 0 ? $mt['image_url'] : '../' . $mt['image_url'];
+                            if (strpos($mt['image_url'], 'http') !== 0) {
+                                $img_src .= (strpos($img_src, '?') === false ? '?' : '&') . 'v=' . time();
+                            }
+                        ?>
+                        <img src="<?= htmlspecialchars($img_src) ?>" alt="<?= htmlspecialchars($mt['name']) ?>">
                         <div class="mountain-item-info">
                             <h4><?= htmlspecialchars($mt['name']) ?></h4>
                             <p><?= htmlspecialchars($mt['location']) ?> • <?= htmlspecialchars($mt['elevation']) ?></p>
